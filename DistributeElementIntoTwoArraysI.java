@@ -1,30 +1,40 @@
+import java.util.*;
 public class DistributeElementIntoTwoArraysI {
-    public int[] resultArray(int[] nums) {
-        int[] arr1 = new int[nums.length/2 + nums.length%2];
-        int[] arr2 = new int[nums.length/2];
+    public static int[] resultArray(int[] nums) {
+        List<Integer> arr1 = new ArrayList<>();
+        List<Integer> arr2 = new ArrayList<>();
         
-        int n1 = 0, n2 = 0;
-        for(int i = 0; i < nums.length; i++) {
-            if(i % 2 == 0) {
-                arr1[n1++] = nums[i];
+        arr1.add(nums[0]);
+        arr2.add(nums[1]);
+        
+        for(int i = 2; i < nums.length; i++) {
+            if(arr1.get(arr1.size() - 1) > arr2.get(arr2.size() - 1)) {
+                arr1.add(nums[i]);
             } else {
-                arr2[n2++] = nums[i];
+                arr2.add(nums[i]);
             }
         }
         
         int[] result = new int[nums.length];
-        System.arraycopy(arr1, 0, result, 0, arr1.length);
-        System.arraycopy(arr2, 0, result, arr1.length, arr2.length);
+        int index = 0;
+        
+        for(int num : arr1) {
+            result[index++] = num;
+        }
+        for(int num : arr2) {
+            result[index++] = num;
+        }
         
         return result;
     }
 
     public static void main(String[] args) {
-        DistributeElementIntoTwoArraysI test = new DistributeElementIntoTwoArraysI();
         int[] nums = {2,1,3};
-        int[] result = test.resultArray(nums);
+        int[] result = resultArray(nums);
         for(int num : result) {
             System.out.println(num);
         }
+        
+
     }
 }
