@@ -2,7 +2,7 @@
 //URL: https://leetcode.com/problems/longest-nice-subarray/
 public class LongestNiceSubarray {
   public static int longestNiceSubarray(int[] nums) {
-    int ans = 0;
+    int ans = 0; 
     int mask = 0;
     for (int l = 0, r = 0; r < nums.length; ++r) {
       while ((mask & nums[r]) > 0)
